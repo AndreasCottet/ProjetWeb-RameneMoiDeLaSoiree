@@ -9,7 +9,7 @@
         <label for="password">Choisissez un mot de passe</label>
         <input class="inputText"  type="password" name="password" placeholder="••••••••" required="">
     </div>
-    <input type="submit" class="w-full text-white bg-[#46CDF8] hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" value="S'inscrire"/>
+    <input type="submit" class="w-full text-white bg-[#46CDF8] hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" value="Se connecter "/>
     <p class="text-sm font-light text-gray-500">
         Vous n'avez pas de compte ? <a href="#" class="font-medium text-primary-600 hover:underline text-primary-500">S'inscrire</a>
     </p>
