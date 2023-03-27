@@ -5,15 +5,13 @@
   import CreateAccountForm from './components/CreateAccount.svelte';
   import LoginForm from './components/LoginForm.svelte';
   import Header from './components/Header.svelte';
+  import PublicationStart from "./components/PublicationStart.svelte";
+  import ChoixDate from "./components/ChoixDate.svelte";
+  import TimeSelector from "./components/TimeSelector.svelte";
 </script>
 
 <main>
-  <header>
-    <Header />
-  </header>
-  
-  <p class="text-3xl font-bold">
-    Test
-  </p>
-  <LoginForm />
+ <PublicationStart />
+ <ChoixDate />
+ <TimeSelector />
 </main>
