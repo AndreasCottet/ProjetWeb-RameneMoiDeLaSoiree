@@ -1,5 +1,6 @@
 <div>
-    <p>Test acteurs</p>
+    <p class="test">Test acteurs</p>
+    <button class="test"></button>
     <ul>
         {#each acteursList as acteur}
         <li>
@@ -10,8 +11,9 @@
 </div>
 
 <script>
-    import { onMount } from 'svelte';
-    import { getActeurs } from "../api/ApiPhp";
+    import { onMount } from 'svelte'
+    import { getActeurs } from "../../api/ApiPhp"
+    import './test.css'
 
     let acteursList = [];
 
