@@ -4,11 +4,13 @@
   import TestApi from './components/TestApiComponents/TestApi.svelte';
   import CreateAccountForm from './components/CreateAccount.svelte';
   import LoginForm from './components/LoginForm.svelte';
+  import Header from './components/Header.svelte';
 </script>
 
+<body class="bg-red-500 h-screen">
+<header>
+  <Header />
+</header>
 <main>
-  <p class="text-3xl font-bold">
-    Test
-  </p>
-  <LoginForm />
 </main>
+</body>
