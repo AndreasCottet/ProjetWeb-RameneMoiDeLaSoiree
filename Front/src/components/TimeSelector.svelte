@@ -19,7 +19,7 @@
         <div class="relative">
             <select
                     bind:value="{selectedHour}"
-                    class="block appearance-none w-16 bg-white border border-gray-300 text-gray-700 py-2 px-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-yellow-300"
+                    class="block appearance-none w-16 bg-white border border-gray-300 text-gray-700 py-2 px-2 rounded leading-tight focus:outline-none focus:bg-white"
             >
                 {#each hours as hour}
                     <option value="{hour}">{hour}</option>
@@ -30,7 +30,7 @@
         <div class="relative">
             <select
                     bind:value="{selectedMinute}"
-                    class="block appearance-none w-16 bg-white border border-gray-300 text-gray-700 py-2 px-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-yellow-300"
+                    class="block appearance-none w-16 bg-white border border-gray-300 text-gray-700 py-2 px-2 rounded leading-tight focus:outline-none focus:bg-white"
             >
                 {#each minutes as minute}
                     <option value="{minute}">{minute}</option>

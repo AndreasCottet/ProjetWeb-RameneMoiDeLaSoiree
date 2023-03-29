@@ -23,7 +23,7 @@
         <input
                 type="date"
                 bind:value="{selectedDate}"
-                class="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring focus:border-yellow-300"
+                class="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring"
         />
     </div>
     <button

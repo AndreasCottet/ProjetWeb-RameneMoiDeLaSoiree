@@ -8,10 +8,10 @@
   import PublicationStart from "./components/PublicationStart.svelte";
   import ChoixDate from "./components/ChoixDate.svelte";
   import TimeSelector from "./components/TimeSelector.svelte";
+  import Nombrepassager from "./components/Nombrepassager.svelte";
+  import ModifProfil from "./components/ModifProfil.svelte";
 </script>
 
 <main>
- <PublicationStart />
- <ChoixDate />
- <TimeSelector />
+ <ModifProfil />
 </main>
