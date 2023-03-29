@@ -2,14 +2,12 @@ import axios from "axios";
 
 // Create a instance of axios to use the same base url.
 const axiosAPI = axios.create({
-  baseURL : "https://pokeapi.co/api/v2/" // it's not recommended to have this info here.
+  baseURL : "https://acottet001.zzz.bordeaux-inp.fr" // it's not recommended to have this info here.
 });
 
 // implement a method to execute all the request from here.
 const apiRequest = (method, url, request) => {
-    const headers = {
-        
-    };
+    const headers = {};
     //using the axios instance to perform the request that received from each http method
     return axiosAPI({
         method,

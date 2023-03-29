@@ -1,19 +1,16 @@
 <script>
   import svelteLogo from './assets/svelte.svg'
   import Counter from './lib/Counter.svelte'
-  import TestApi from './components/TestApi.svelte';
-  import CaseTrajet from "./CaseTrajet.svelte";
-  import SearchBar from "./SearchBar.svelte";
-
+  import TestApi from './components/TestApiComponents/TestApi.svelte';
+  import CreateAccountForm from './components/CreateAccount.svelte';
+  import LoginForm from './components/LoginForm.svelte';
+  import Header from './components/Header.svelte';
+  import CaseTrajet from "./components/CaseTrajet.svelte";
+  import SearchBar from "./components/SearchBar.svelte";
 </script>
 
-<body>
+<body class="bg-red-500 h-screen">
 <main>
-  <div class="p-96 bg-gray-500">
-  <p class="text-3xl font-bold underline">
-    Test
-  </p>
- <SearchBar />
-  </div>
+ <CaseTrajet/>
 </main>
 </body>
