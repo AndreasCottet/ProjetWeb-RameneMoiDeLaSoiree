@@ -7,13 +7,10 @@
   import Header from './components/Header.svelte';
 </script>
 
+<body class="bg-red-500 h-screen">
+<header>
+  <Header />
+</header>
 <main>
-  <header>
-    <Header />
-  </header>
-  
-  <p class="text-3xl font-bold">
-    Test
-  </p>
-  <LoginForm />
 </main>
+</body>
