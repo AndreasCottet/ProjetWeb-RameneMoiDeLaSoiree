@@ -5,6 +5,8 @@
   import CreateAccountForm from './components/CreateAccount.svelte';
   import LoginForm from './components/LoginForm.svelte';
   import Header from './components/Header.svelte';
+  import CaseTrajet from "./components/CaseTrajet.svelte";
+  import SearchBar from "./components/SearchBar.svelte";
 </script>
 
 <body class="bg-red-500 h-screen">
