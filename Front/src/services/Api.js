@@ -5,6 +5,7 @@ const axiosAPI = axios.create({
   baseURL : "https://acottet001.zzz.bordeaux-inp.fr" // it's not recommended to have this info here.
 });
 
+
 // implement a method to execute all the request from here.
 const apiRequest = (method, url, request) => {
     const headers = {};
