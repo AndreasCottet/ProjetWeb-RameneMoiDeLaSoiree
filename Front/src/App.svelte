@@ -10,8 +10,12 @@
   import TimeSelector from "./components/TimeSelector.svelte";
   import Nombrepassager from "./components/Nombrepassager.svelte";
   import ModifProfil from "./components/ModifProfil.svelte";
+  import AccessModifProfil from "./components/AccessModifProfil.svelte";
 </script>
 
 <main>
- <ModifProfil />
+<ModifProfil />
+
+
+
 </main>

@@ -27,7 +27,7 @@
 
 </script>
 
-<div class="flex flex-col justify-between items-center px-3 w-96 max-w-full bg-white space-y-4">
+<div class="flex flex-col justify-between border items-center px-3 w-96 max-w-full bg-white space-y-4">
     <div>
         <h1 class="text-center font-bold text-3xl">  {name} </h1>
     </div>
