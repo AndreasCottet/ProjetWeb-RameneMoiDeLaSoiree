@@ -5,15 +5,11 @@
   import CreateAccountForm from './components/CreateAccount.svelte';
   import LoginForm from './components/LoginForm.svelte';
   import Header from './components/Header.svelte';
+  import Affiche_Un_Trajet from "./components/Affiche_Un_Trajet.svelte";
+  import Boite_De_Recepetion from "./components/Boite_De_Recepetion.svelte";
 </script>
 
 <main>
-  <header>
-    <Header />
-  </header>
-  
-  <p class="text-3xl font-bold">
-    Test
-  </p>
-  <LoginForm />
+ <Affiche_Un_Trajet />
+ <Boite_De_Recepetion />
 </main>
