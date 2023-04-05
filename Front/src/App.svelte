@@ -14,7 +14,8 @@
 </script>
 
 <main>
-<ModifProfil />
+<AccessModifProfil />
+    <ModifProfil />
 
 
 
