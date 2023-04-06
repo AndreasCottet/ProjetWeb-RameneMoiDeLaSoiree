@@ -15,9 +15,11 @@
   <Header />
 </header>
 <main>
+
   <CaseTrajet />
   <SearchBar />
   <CreateAccount />
   <LoginForm />
+
 </main>
 </body>
