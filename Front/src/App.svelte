@@ -1,22 +1,18 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
-  import TestApi from './components/TestApiComponents/TestApi.svelte';
-  import CreateAccountForm from './components/CreateAccount.svelte';
-  import LoginForm from './components/LoginForm.svelte';
+
   import Header from './components/Header.svelte';
-  import PublicationStart from "./components/PublicationStart.svelte";
-  import ChoixDate from "./components/ChoixDate.svelte";
-  import TimeSelector from "./components/TimeSelector.svelte";
-  import Nombrepassager from "./components/Nombrepassager.svelte";
-  import ModifProfil from "./components/ModifProfil.svelte";
   import AccessModifProfil from "./components/AccessModifProfil.svelte";
+  import ModifProfil from "./components/ModifProfil.svelte";
 </script>
 
+<body class="bg-red-500 h-screen">
+<header>
+  <Header />
+</header>
 <main>
-<AccessModifProfil />
-    <ModifProfil />
 
-
+  <AccessModifProfil />
+  <ModifProfil />
 
 </main>
+</body>
