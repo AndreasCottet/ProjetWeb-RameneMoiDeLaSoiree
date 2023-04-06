@@ -3,6 +3,7 @@
 
     let messages = [];
     let selectedMessage = null;
+    let messageContent = '';
 
     async function fetchMessages() {
         // Simuler l'obtention de données depuis une base de données externe
@@ -41,6 +42,23 @@
     function closeChat() {
         selectedMessage = null;
     }
+
+    async function sendMessage() {
+        if (messageContent.trim() === '') {
+            return;
+        }
+
+        // Simuler l'envoi du message à la base de données
+        console.log('Message envoyé:', messageContent);
+
+        // Effacer le contenu du message
+        messageContent = '';
+    }
+
+    async function refreshMessages() {
+        await fetchMessages();
+    }
+
 </script>
 
 <style>
@@ -72,6 +90,12 @@
 
 <div class="max-w-lg mx-auto mt-8">
     <h1>Boîte de réception</h1>
+    <button
+            on:click="{refreshMessages}"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+        Recharger les messages
+    </button>
     {#each messages as message (message.id)}
         <div class="message" on:click={() => openChat(message)}>
             <div class="flex justify-between">
@@ -96,6 +120,12 @@
                     class="w-full border border-gray-300 rounded mt-4 p-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
                     placeholder="Écrire un message..."
             />
+            <button
+                    on:click="{sendMessage}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Envoyer
+            </button>
         </div>
     {/if}
 </div>
