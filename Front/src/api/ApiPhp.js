@@ -35,3 +35,12 @@ export const getZoneById = async (id) => {
     console.error(error);
   }
 }
+
+export const postPath = async (form) => {
+  try {
+    const response = await Api.post("http://127.0.0.1/api/insert.php?entity=trajet", form);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+}

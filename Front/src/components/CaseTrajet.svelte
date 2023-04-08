@@ -22,7 +22,7 @@
     <h1>Date:</h1>
     <div class="flex gap-4">
         <img src="src/assets/calendar.png" alt="Logo d'une calendrier">
-        <h2>{trajet.data}</h2>
+        <h2>{trajet.date}</h2>
     </div>
     <br>
     <h1>Place Restante:</h1>
@@ -48,7 +48,7 @@
     }
     h2
     {
-        @apply text-black text-xl text-left font-bold flex-auto ;
+        @apply text-black text-xl text-left font-semibold flex-auto ;
     }
     img
     {

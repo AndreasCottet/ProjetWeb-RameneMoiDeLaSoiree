@@ -8,16 +8,17 @@
   import CaseTrajet from "./components/CaseTrajet.svelte";
   import SearchBar from "./components/SearchBar.svelte";
   import CreateAccount from './components/CreateAccount.svelte';
+  import PublicationStart from './components/PublicationStart.svelte';
+  import CreatePath from './components/pages/createPath.svelte';
 </script>
 
-<body class="bg-red-500 h-screen">
+<body>
 <header>
   <Header />
 </header>
 <main>
-  <CaseTrajet />
-  <SearchBar />
-  <CreateAccount />
-  <LoginForm />
+  <CreatePath />
 </main>
 </body>
+
+
