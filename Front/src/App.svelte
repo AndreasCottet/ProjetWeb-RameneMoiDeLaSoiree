@@ -1,21 +1,19 @@
 <script>
+  import Router from 'svelte-spa-router';
+  import Home from './routes/Home.svelte';
+  import Trajet from './routes/Trajet.svelte';
+  import NotFound from './routes/NotFound.svelte';
 
-  import Header from './components/Header.svelte';
-  import SearchBar from "./components/SearchBar.svelte";
-  import CreateAccount from './components/CreateAccount.svelte';
-  import PublicationStart from './components/PublicationStart.svelte';
-  import CreatePath from './components/pages/createPath.svelte';
+  let routes = {
+    '/': Home,
+    '/trajet': Trajet,
+    '*': NotFound,
+  };
 
 </script>
 
-<body>
-<header>
-  <Header />
-</header>
 <main>
-  <SearchBar />
-  <CreateAccount />
+  <Router {routes} />
 </main>
-</body>
 
 
