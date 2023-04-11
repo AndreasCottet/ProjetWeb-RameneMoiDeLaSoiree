@@ -9,6 +9,7 @@
     function handleSearchClick() {
         $showTrajets = true;
     }
+
 </script>
 
 <div class="w-full flex justify-center items-center">
