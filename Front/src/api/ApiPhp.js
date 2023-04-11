@@ -44,3 +44,12 @@ export const postPath = async (form) => {
     console.error(error);
   }
 }
+
+export const postUser = async (form) => {
+  try {
+    const response = await Api.post("http://127.0.0.1/api/insert.php?entity=etudiant", form);
+  } catch (error) {
+    console.error(error);
+  }
+  return response;
+}

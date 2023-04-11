@@ -1,41 +1,83 @@
-<form class="w-2/3 text-center p-6 space-y-4 md:space-y-6 sm:p-8 border rounded-lg bg-white" method="POST" action="http://127.0.0.1/api/insert.php">
+<script>
+    import { postUser } from "../api/ApiPhp";
+
+    let user = {
+        prenom: '',
+        nom: '',
+        telephone: '',
+        sexe: '',
+        email: '',
+        password: ''
+    }
+
+    let errorMessage = '';
+
+    function handleSubmit() {
+        var form_data = new FormData();
+        console.log(user);
+        for (var key in user) {
+            if(user[key] == '') {
+                errorMessage = 'Veuillez remplir tous les champs';
+                return;
+            }
+            form_data.append(key, user[key]);
+            errorMessage = '';
+        } 
+
+        postUser(form_data).then((response) => {
+        if(response.status == 200) {
+            console.log(response);
+        } else {
+            console.log(response);
+        }
+    });
+    }
+
+</script>
+
+<div class="w-2/3 text-center p-6 space-y-4 md:space-y-6 sm:p-8 border rounded-lg bg-white">
+    {#if errorMessage}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Erreur !</strong>
+            <span class="block sm:inline">{errorMessage}</span>
+        </div>
+    {/if}
     <h1 class="text-xl font-bold text-black">S'inscrire</h1>
     <input type="hidden" value="etudiant" name="entity">
     <div>
-        <label for="prenom">Votre prenom</label>
-        <input class="inputText" type="text" name="prenom" required="">
+        <label for="prenom">Saisissez votre prénom</label>
+        <input class="inputText" type="text" bind:value="{user.prenom}" required>
     </div>
     <div>
-        <label for="nom">Votre nom</label>
-        <input class="inputText" type="text" name="nom"  required="">
+        <label for="nom">Saisissez votre nom</label>
+        <input class="inputText" type="text" name="nom" bind:value="{user.nom}" required>
     </div>
     <div>
-        <label for="telephone">Votre numéro de téléphone</label>
-        <input class="inputText"  type="telephone" name="telephone" required="">
+        <label for="telephone">Saisissez votre numéro de téléphone</label>
+        <input class="inputText"  type="telephone" name="telephone" bind:value="{user.telephone}" required>
     </div>
     <div>
-        <label for="sexe">Votre sexe</label>
-        <input class="inputText"  type="radio" name="sexe" required="" value="H">
-        <input class="inputText"  type="radio" name="sexe" required="" value="F">
+        <label for="sexe">Saisissez votre sexe</label>
+        <select bind:value="{user.sexe}">
+            <option value="" selected disabled>Saisissez votre sexe</option>
+            <option value="H">Homme</option>
+            <option value="F">Femme</option>
+        </select>
     </div>
     <div>
         <label for="email">Choisissez un email</label>
-        <input class="inputText" type="email" name="email" placeholder="name@company.com" required="">
+        <input class="inputText" type="email" name="email" placeholder="name@company.com" bind:value="{user.email}" required>
     </div>
     <div>
         <label for="password">Choisissez un mot de passe</label>
-        <input class="inputText"  type="password" name="password" placeholder="••••••••" required="">
+        <input class="inputText"  type="password" name="password" placeholder="••••••••" bind:value="{user.password}" required>
     </div>
     
-    <input type="submit" class="w-full text-white bg-[#46CDF8] hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" value="S'inscrire"/>
+    <button on:click={handleSubmit} class="w-full text-white bg-[#46CDF8] hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center">S'inscrire</button>
     <p class="text-sm font-light text-gray-500">
         Vous avez déja un compte ? <a href="#/user/login" class="font-medium text-primary-600 hover:underline text-primary-500">Se connecter</a>
     </p>
-</form>
-    
-<script>
-    
-</script>
+</div>
 
 <style>
     .inputText {
