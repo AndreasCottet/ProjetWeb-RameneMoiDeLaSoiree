@@ -1,11 +1,32 @@
+
+<script>
+    import {getZone} from "../api/ApiPhp.js";
+
+    let zones = [''];
+
+    getZone().then((data) => {
+        zones = data;
+    });
+
+</script>
 <div class="flex rounded-full bg-gray-100 justify-between p-3 w-full">
     <div class="flex items-center ">
         <img src="src/assets/house.png" alt="logo maison">
-        <input type="text" name="departure" placeholder="Départ">
+        <select id="depart" name="depart">
+            <option value="">Départ</option>
+            {#each zones as zone}
+                <option value="{zone}">{zone.NOM}</option>
+            {/each}
+        </select>
     </div>
     <div class="flex items-center border-l-2">
         <img src="src/assets/house.png" alt="logo maison">
-        <input type="text" name="arrival" placeholder="Arrivée">
+        <select id="arrivee" name="arrivee">
+            <option value="">Arrivée</option>
+            {#each zones as zone}
+                <option value="{zone}">{zone.NOM}</option>
+            {/each}
+        </select>
     </div>
     <div class="flex items-center border-l-2 w-3/12">
         <img src="src/assets/calendar.png" alt="logo maison">
