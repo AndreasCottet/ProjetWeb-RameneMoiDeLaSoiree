@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 import Api from "../services/Api";
 
 export const getActeurs = async () => {
@@ -49,7 +50,7 @@ export const postUser = async (form) => {
   try {
     const response = await Api.post("http://127.0.0.1/api/insert.php?entity=etudiant", form);
   } catch (error) {
-    console.error(error);
+    console.error(error.response.data.error);
+    return error.response.data.error;
   }
-  return response;
 }
