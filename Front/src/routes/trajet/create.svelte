@@ -1,13 +1,19 @@
 <script>
     import { getZone, postPath } from "../../api/ApiPhp";
+    import AfficheUnTrajet from "../../components/Affiche_Un_Trajet.svelte";
+
+    console.log(document.cookie);
+    let idConducteur = document.cookie.split('=')[1];
 
     let trajet = {
+        idConducteur: idConducteur,
         idZoneDepart: '',
         idZoneArrivee: '',
         lieuDepart: '',
         lieuArrivee: '',
         numberOfPassengers: 1,
-        dateDepart: Date(),
+        dateDepart: '',
+        dateArrivee: '',
         nbrPassagers: 1,
     }
 
@@ -20,7 +26,9 @@
 
     getZone().then((data) => {
         zones = data;
+        console.log(zones);
     });
+
 
 
     function handleSubmit() 
@@ -29,9 +37,8 @@
         for (let key in trajet ) {
             form_data.append(key, trajet[key]);
         }
-
         postPath(form_data).then((data) => {
-            console.log(data);
+            step++;
         });
     }
 
@@ -56,10 +63,15 @@
                     return
                 }
                 break;
+            case 4:
+                if(trajet.dateArrivee == '') {
+                    errorMessage = 'Veuillez remplir la date d\'arrivée';
+                    return
+                }
         }
+        errorMessage = '';
         if(step < 6) {
             step++;
-            console.log(step)
         }
         
     }
@@ -76,7 +88,7 @@
 
 </script>
 
-<div class="mt-10 text-center justify-center items-center flex-row w-2/3">
+<form class="mt-10 text-center justify-center items-center flex-row w-2/3">
     {#if errorMessage}
         <div class="bg-red-100 border border-red-400 text-red-700 mb-8 px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">Erreur !</strong>
@@ -90,13 +102,15 @@
                 <input bind:value="{trajet.lieuDepart}" type="text" placeholder="Saisissez votre adresse de départ" required/>
             </div>
             {#if trajet.lieuDepart != ''}
-                <h2>Veuillez saisir une zone dans laquelle est située votre adresse</h2>
-                <select bind:value="{trajet.beginZone}" required>
-                    <option value="">zone de départ</option>
-                    {#each zones as zone}
-                        <option value="{zone}">{zone.NOM}</option>
-                    {/each}
-                </select>
+                <div class="mt-10">
+                    <h2>Veuillez saisir une zone dans laquelle est située votre adresse</h2>
+                    <select bind:value="{trajet.idZoneDepart}" required class="inputUser">
+                        <option value="">Zone de départ</option>
+                        {#each zones as zone}
+                            <option value="{zone.ID_ZONE}">{zone.NOM}</option>
+                        {/each}
+                    </select>
+                </div>
             {/if}
         </div>
 
@@ -107,43 +121,51 @@
                 <input bind:value="{trajet.lieuArrivee}" type="text" placeholder="Saisissez votre adresse de départ" required/>
             </div>
             {#if trajet.lieuArrivee != ''}
-                <h2>Veuillez saisir une zone dans laquelle est située votre adresse</h2>
-                <select bind:value="{trajet.endZone}" required>
-                    <option value="">zone de départ</option>
-                    {#each zones as zone}
-                        <option value="{zone}">{zone.NOM}</option>
-                    {/each}
-                </select>
+                <div class="mt-10">
+                    <h2>Veuillez saisir une zone dans laquelle est située votre adresse</h2>
+                    <select bind:value="{trajet.idZoneArrivee}" required class="inputUser">
+                        <option value="">Zone d'arrivée</option>
+                        {#each zones as zone}
+                            <option value="{zone.ID_ZONE}">{zone.NOM}</option>
+                        {/each}
+                    </select>
+                </div>
             {/if}
         </div>    
     
     {:else if step == 3}
-        <h2>Sélectionnez une date</h2>
+        <h2>Sélectionnez la date et l'heure de départ</h2>
         <div class="flex inputUser">
-        <input type="date" bind:value="{trajet.dateDepart}" required/>
+        <input type="datetime-local" bind:value="{trajet.dateDepart}" required/>
         </div>
 
     {:else if step == 4}
-        <h2>Sélectionnez une heure de départ</h2>
+        <h2>Sélectionnez la date et l'heure d'arrivée</h2>
         <div class="flex inputUser">
-        <input bind:value="{trajet.beginTime}" type="time" required/>
+        <input type="datetime-local" bind:value="{trajet.dateArrivee}" required/>
         </div>
 
     {:else if step == 5}
-        <h2>Sélectionnez une heure d'arrivée</h2>
+        <h2>Nombre de passagers disponibles : </h2>
         <div class="flex inputUser">
-        <input bind:value="{trajet.endTime}" type="time" required/>
+            <input bind:value="{trajet.nbrPassagers}" type="number" min="1" max="4" placeholder="Nombre de passagers" required/>
         </div>
 
     {:else if step == 6}
-        <h2>Nombre de passagers disponibles : </h2>
-        <div class="flex inputUser">
-            <input bind:value="{trajet.nbrPassagers}" type="number" min="0" max="4" placeholder="Nombre de passagers" required/>
+        <AfficheUnTrajet trajet={trajet}>
+            <button on:click="{handleSubmit}" type="submit" class="mt-5">Valider</button>
+        </AfficheUnTrajet>
+    
+    {:else if step == 7}
+        <div class="drop-shadow-lg">
+            <!-- A faire -->
         </div>
-        <button on:click="{handleSubmit}" type="submit" class="mt-10">Soumettre</button>
+
     {/if}
     
-    <div class="flex justify-center absolute left-0 right-0 bottom-40 gap-2">
+    {#if step != 7}
+    
+    <div class="stepBullet {step == 6 ? 'bottom-20' : 'bottom-40'}">
         <div class="outer-circle">
             {#if step == 1}
             <div class="inner-circle"></div>
@@ -176,7 +198,8 @@
         </div>
     </div>
 
-    <div class="flex justify-center gap-10 absolute left-0 right-0 bottom-20">
+
+    <div class="flex justify-center gap-10 absolute left-0 right-0 {step == 6 ? 'bottom-2' : 'bottom-10'}">
         {#if step > 1} 
             <button on:click={decrementStep}>Précédent</button>
         {/if}
@@ -184,7 +207,8 @@
             <button on:click={incrementStep}>Suivant</button>
         {/if}
     </div>
-</div>
+    {/if}
+</form>
     
 
 <style>
@@ -211,5 +235,9 @@
 
     .inner-circle {
         @apply  absolute bg-blue-400 rounded-full h-4 w-4 m-2;
+    }
+
+    .stepBullet {
+        @apply flex justify-center absolute left-0 right-0 gap-2;
     }
 </style>

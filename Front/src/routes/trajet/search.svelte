@@ -1,9 +1,10 @@
 
 <script>
-    import {getZone, getTrajets} from "../api/ApiPhp.js";
+    import {getZone, getTrajets} from "../../api/ApiPhp.js";
+    import AfficheUnTrajet from "../../components/Affiche_Un_Trajet.svelte";
 
     let zones = [''];
-    export let results;
+    let results;
 
     getZone().then((data) => {
         zones = data;
@@ -18,10 +19,11 @@
 
     function handleSubmit() 
     {
-        console.log(trajet);
         getTrajets(trajet).then((data) => {
             results = data;
         });
+        console.log("trajet :")
+        console.log(results)
     }
 
 </script>
@@ -53,6 +55,13 @@
         <input type="number" name="passengers" placeholder="Passagers" min="1" max="4" bind:value="{trajet.nbrPassagers}">
     </div>
     <button class="bg-cyan-500 text-white rounded-r-full px-4 py-2 h-full" on:click="{handleSubmit}">Rechercher</button>
+
+</div>
+    {#each results as trajet}
+        <AfficheUnTrajet trajet={trajet}/>
+    {/each}
+<div>
+
 </div>
 
 <style>

@@ -6,8 +6,10 @@
   import CreateTrajet from './routes/trajet/create.svelte';
   import Login from './routes/user/Login.svelte';
   import CreateAccount from './routes/user/create.svelte';
-  import SearchBar from './routes/SearchBar.svelte';
+  import SearchBar from './routes/trajet/search.svelte';
   import ViewUser from './routes/user/view.svelte';
+  import AccessModifProfil from './components/AccessModifProfil.svelte';
+  import AfficheUnTrajet from './components/Affiche_Un_Trajet.svelte';
 
   let routes = {
     '/': Home,

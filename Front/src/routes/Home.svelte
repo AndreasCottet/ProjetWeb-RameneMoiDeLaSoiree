@@ -14,7 +14,7 @@
 
 <div class="w-full flex justify-center items-center">
     <div class="w-3/4 mt-16">
-        <SearchBar on:click={handleSearchClick} />
+        <!-- <SearchBar on:click={handleSearchClick} /> -->
     </div>
     {#if $showTrajets}
         <div class="flex">

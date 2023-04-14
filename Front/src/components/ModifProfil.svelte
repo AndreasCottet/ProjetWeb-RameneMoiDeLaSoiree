@@ -5,7 +5,6 @@
     let phoneNumber = "";
     let Prenom = "";
     let Nom = "";
-    let Sexe = "";
     let DateDeNaissance = "";
     let Minibio = "";
     let emailError = false;
@@ -19,7 +18,6 @@
             phoneNumber: "0755070088",
             Prenom: "Lilian",
             Nom: "DO COUTO",
-            Sexe: "Homme",
             DateDeNaissance: "2000-02-24",
             Minibio: "Bonjour, je suis nouveau, je pense être agréable, j'aime bien parler bien que je ne mène pas forcément la conversation.",
         };
@@ -28,7 +26,6 @@
         phoneNumber = data.phoneNumber;
         Prenom = data.Prenom;
         Nom = data.Nom;
-        Sexe = data.Sexe;
         DateDeNaissance = data.DateDeNaissance;
         Minibio = data.Minibio;
     }
@@ -105,13 +102,6 @@
     <div class="kirk-item">
         <span>Nom</span>
         <input type="text" id="Nom" value={Nom} />
-    </div>
-    <div class="kirk-item">
-        <span>Sexe</span>
-        <select id="Sexe" value={Sexe} class="border rounded px-2 py-1">
-            <option>Homme</option>
-            <option>Femme</option>
-        </select>
     </div>
     <div class="kirk-item">
         <span>Date de naissance</span>

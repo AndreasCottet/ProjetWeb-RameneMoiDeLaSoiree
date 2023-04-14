@@ -5,7 +5,6 @@
         prenom: '',
         nom: '',
         telephone: '',
-        sexe: '',
         email: '',
         password: ''
     }
@@ -55,14 +54,6 @@
     <div>
         <label for="telephone">Saisissez votre numéro de téléphone</label>
         <input class="inputText"  type="telephone" name="telephone" bind:value="{user.telephone}" required>
-    </div>
-    <div>
-        <label for="sexe">Saisissez votre sexe</label>
-        <select bind:value="{user.sexe}" class="inputText">
-            <option value="" selected disabled>Saisissez votre sexe</option>
-            <option value="H">Homme</option>
-            <option value="F">Femme</option>
-        </select>
     </div>
     <div>
         <label for="email">Choisissez un email</label>
