@@ -8,8 +8,6 @@
   import CreateAccount from './routes/user/create.svelte';
   import SearchBar from './routes/trajet/search.svelte';
   import ViewUser from './routes/user/view.svelte';
-  import AccessModifProfil from './components/AccessModifProfil.svelte';
-  import AfficheUnTrajet from './components/Affiche_Un_Trajet.svelte';
 
   let routes = {
     '/': Home,
@@ -26,7 +24,7 @@
 <header>
   <Header />
 </header>
-<main class="items-center justify-center text-center flex">
+<main class="items-center justify-center text-center flex-row">
   <Router {routes} />
 </main>
 

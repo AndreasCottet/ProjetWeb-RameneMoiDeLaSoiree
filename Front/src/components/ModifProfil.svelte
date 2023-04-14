@@ -38,17 +38,17 @@
         // Implémentez la logique pour enregistrer les modifications dans la base de données externe
     }
 
-    function validateField(id) {
-        const input = document.getElementById(id);
-     if (id === 'email') {
-        emailError = !input.validity.valid;
-        }
-        else if (id === 'phoneNumber') {
-            phoneNumberError = !input.validity.valid;
-        } else if (id === 'Minibio') {
-            minibioError = input.value.length > 500;
-        }
-    }
+    // function validateField(id) {
+    //     const input = document.getElementById(id);
+    //  if (id === 'email') {
+    //     emailError = !input.validity.valid;
+    //     }
+    //     else if (id === 'phoneNumber') {
+    //         phoneNumberError = !input.validity.valid;
+    //     } else if (id === 'Minibio') {
+    //         minibioError = input.value.length > 500;
+    //     }
+    // }
 </script>
 
 <style>

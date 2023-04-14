@@ -1,31 +1,23 @@
 <script>
     import { onMount } from 'svelte';
+    import { getUser } from '../api/ApiPhp.js';
+
+    export let id;
 
     let user = {
         prenom: "",
         email: "",
-        phoneNumber: "",
-        minibio: "",
+        telephone: "",
+        // minibio: "",
     };
 
-    async function fetchUserData() {
-        // Simuler l'obtention de données depuis une base de données externe
-        const data = {
-            prenom: "Lilian",
-            email: "liliandocouto63@gmail.com",
-            phoneNumber: "0755070088",
-            minibio: "Bonjour, je suis nouveau, je pense être agréable, j'aime bien parler bien que je ne mène pas forcément la conversation.",
-        };
-
-        user = { ...data };
-    }
-
-    onMount(() => {
-        fetchUserData();
+    getUser(id).then((data) => {
+        user = data[0];
     });
 
-    function goToModifProfil() {
-        // Naviguer vers la page de modification du profil
+    function goToModifProfil()
+    {
+        
     }
 </script>
 
@@ -89,12 +81,12 @@
     </div>
     <div class="profile-section">
         <h2>Numéro de téléphone</h2>
-        <p>{user.phoneNumber}</p>
+        <p>{user.telephone}</p>
     </div>
-    <div class="profile-section">
+    <!-- <div class="profile-section">
         <h2>Minibio</h2>
         <p>{user.minibio}</p>
-    </div>
+    </div> -->
     <div class="profile-section text-center">
         <button onclick={goToModifProfil} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Modifier profil

@@ -6,7 +6,7 @@
     let idConducteur = document.cookie.split('=')[1];
 
     let trajet = {
-        idConducteur: idConducteur,
+        idConducteur: Number(idConducteur),
         idZoneDepart: '',
         idZoneArrivee: '',
         lieuDepart: '',

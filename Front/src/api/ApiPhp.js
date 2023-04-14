@@ -74,6 +74,7 @@ export const getTrajets = async (trajet) => {
       console.log(searchParams);
     }
     const response = await Api.get("http://127.0.0.1/api/select.php?entity=trajet" + searchParams);
+    return response;
   } catch (error) {
     console.error(error);
   }

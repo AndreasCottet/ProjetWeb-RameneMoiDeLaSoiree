@@ -25,25 +25,20 @@
 
     getZone().then((data) => {
         zones = data;
-        console.log(zones);
-        zones.forEach(element => {
-            if(element.ID_ZONE == trajet.idZoneDepart) {
-                nomZoneDepart = element.NOM;
+            zones.forEach(element => {
+            if(element.id == trajet.idZoneDepart) {
+                nomZoneDepart = element.nom;
             }
-            if(element.ID_ZONE == trajet.idZoneArrivee) {
-                nomZoneArrivee = element.NOM;
+            if(element.id == trajet.idZoneArrivee) {
+                nomZoneArrivee = element.nom;
             }
         });
     });
 
     getUser(trajet.idConducteur).then((data) => {
+        console.log(data);
         user = data[0];
-        console.log(user)
     })
-
-
-
-
 </script>
 
 <style>
@@ -65,7 +60,7 @@
 </style>
 
 
-<div class="bg-white p-6 max-w-lg mx-auto mt-8 shadow-lg rounded-lg">
+<div class="bg-white p-6 mx-auto mt-8 shadow-lg rounded-lg w-1/4 text-center">
     <h1>Départ</h1>
     <div>
         <h2><span>Zone de départ : </span>{nomZoneDepart}</h2>
@@ -77,10 +72,12 @@
         <p><span>Adresse d'arrivée :</span> {trajet.lieuArrivee} <span>le</span> {new Date(trajet.dateArrivee).toDateString()}</p>
     </div>
     <div>
-        <h2>Conducteur : {user.PRENOM} {user.NOM}</h2>
-        <p><span>E-mail :</span> {user.EMAIL}</p>
-        <p><span>Numéro de téléphone :</span> {user.TELEPHONE}</p>
+        <h2>Conducteur : {user.prenom} {user.nom}</h2>
+        <p><span>E-mail :</span> {user.email}</p>
+        <p><span>Numéro de téléphone :</span> {user.telephone}</p>
     </div>
+    <br>
+    <a class="bg-blue-400 hover:bg-transparent hover:text-blue-400 text-blue-50 border-2 border-blue-400 rounded-md px-3 py-2 font-semibold" href="">Voir plus</a>
     <slot></slot>
 </div>
 
