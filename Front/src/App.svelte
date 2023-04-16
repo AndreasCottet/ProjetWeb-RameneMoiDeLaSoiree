@@ -6,16 +6,24 @@
   import CreateTrajet from './routes/trajet/create.svelte';
   import Login from './routes/user/Login.svelte';
   import CreateAccount from './routes/user/create.svelte';
-  import SearchBar from './routes/trajet/search.svelte';
+  import SearchPage from './routes/trajet/search.svelte';
   import ViewUser from './routes/user/view.svelte';
+  import ViewTrajet from './routes/trajet/view.svelte';
+  import CreateLieu from './routes/lieu/create.svelte';
+  import CreateEvenement from './routes/evenement/create.svelte';
+  import ConversationTrajet from './routes/trajet/conversation.svelte';
 
   let routes = {
-    '/': Home,
+    '/': SearchPage,
+    '/lieu/create': CreateLieu,
+    '/evenement/create': CreateEvenement,
     '/trajet/create': CreateTrajet,
+    '/trajet/conversation/:id': ConversationTrajet,
+    '/trajet/view/:id': ViewTrajet,
     '/user/login': Login,
     '/user/create': CreateAccount,
     '/user/view': ViewUser,
-    '/search': SearchBar,
+    '/search': SearchPage,
     '*': NotFound,
   };
 
@@ -24,7 +32,7 @@
 <header>
   <Header />
 </header>
-<main class="items-center justify-center text-center flex-row">
+<main class="flex items-center justify-center text-center ">
   <Router {routes} />
 </main>
 

@@ -8,52 +8,16 @@
         prenom: "",
         email: "",
         telephone: "",
-        // minibio: "",
     };
 
     getUser(id).then((data) => {
         user = data[0];
     });
-
-    function goToModifProfil()
-    {
-        
-    }
 </script>
 
 <style>
     .profile-section {
         margin-bottom: 1rem;
-    }
-    .text-xl {
-        font-size: 1.25rem;
-        font-weight: 700;
-    }
-    .text-gray-700 {
-        color: #4a5568;
-    }
-    .bg-blue-500 {
-        background-color: #4299e1;
-    }
-    .hover\:bg-blue-700:hover {
-        background-color: #2b6cb0;
-    }
-    .text-white {
-        color: #fff;
-    }
-    .font-bold {
-        font-weight: 700;
-    }
-    .py-2 {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
-    .px-4 {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    .rounded {
-        border-radius: 0.25rem;
     }
 
     h1 {
@@ -61,7 +25,7 @@
     }
 
     h2 {
-        @apply text-xl font-semibold mb-2;
+        @apply text-xl font-semibold;
     }
 
     p{
@@ -69,11 +33,15 @@
     }
 </style>
 
-<div class="bg-white p-6 max-w-md mx-auto mt-8 shadow-lg rounded-lg">
-    <h1>Profil de {user.prenom}</h1>
+<div class="p-6 mt-8 text-left w-1/2">
+    <h1>Bienvenue de nouveau {user.prenom}😀</h1>
     <div class="profile-section">
         <h2>Prénom</h2>
         <p>{user.prenom}</p>
+    </div>
+    <div class="profile-section">
+        <h2>Nom</h2>
+        <p>{user.nom}</p>
     </div>
     <div class="profile-section">
         <h2>E-mail</h2>
@@ -83,13 +51,16 @@
         <h2>Numéro de téléphone</h2>
         <p>{user.telephone}</p>
     </div>
-    <!-- <div class="profile-section">
-        <h2>Minibio</h2>
-        <p>{user.minibio}</p>
-    </div> -->
+    <div>
+        <div>
+            <h2>Mes trajets</h2>
+        </div>
+        <div>
+        </div>
+    </div>
     <div class="profile-section text-center">
-        <button onclick={goToModifProfil} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <a href="#/user/update/{id}" class="bg-blue-400 hover:bg-transparent hover:text-blue-400 border-2 border-blue-400 text-white font-bold py-2 px-4 rounded">
             Modifier profil
-        </button>
+        </a>
     </div>
 </div>

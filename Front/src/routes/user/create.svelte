@@ -23,41 +23,48 @@
         } 
 
         postUser(form_data).then((response) => {
-            if(response) {
-                errorMessage = response;
-            } else {
-                //document.location.href="/"; 
-            }
-        });
-        
+            console.log(response);
+            setCookie('userId', response, 1)
+            document.location.href="#/"
+            document.location.reload()
+        }).catch((error) => {
+            errorMessage = error.response.data.error;
+        })
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 
 </script>
 
-<div class="w-1/3 drop-shadow-lg text-center p-6 space-y-4 md:space-y-6 sm:p-8 border rounded-lg bg-white my-16">
+<div class="w-1/3 drop-shadow-lg text-center p-6 space-y-6 border rounded-lg bg-white my-10">
     {#if errorMessage}
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <strong class="font-bold">Erreur !</strong>
             <span class="block sm:inline">{errorMessage}</span>
         </div>
     {/if}
-    <h1 class="text-2xl font-bold text-black">S'inscrire</h1>
+    <h1 class="text-3xl font-bold text-black">S'inscrire</h1>
     <input type="hidden" value="etudiant" name="entity">
     <div>
         <label for="prenom">Saisissez votre prénom</label>
-        <input class="inputText" type="text" bind:value="{user.prenom}" required>
+        <input class="inputText" type="text" bind:value="{user.prenom}" required placeholder="Andréas">
     </div>
     <div>
         <label for="nom">Saisissez votre nom</label>
-        <input class="inputText" type="text" name="nom" bind:value="{user.nom}" required>
+        <input class="inputText" type="text" name="nom" bind:value="{user.nom}" required placeholder="Cottet">
     </div>
     <div>
         <label for="telephone">Saisissez votre numéro de téléphone</label>
-        <input class="inputText"  type="telephone" name="telephone" bind:value="{user.telephone}" required>
+        <input class="inputText"  type="telephone" name="telephone" bind:value="{user.telephone}" required placeholder="+33610203040">
     </div>
     <div>
         <label for="email">Choisissez un email</label>
-        <input class="inputText" type="email" name="email" placeholder="name@company.com" bind:value="{user.email}" required>
+        <input class="inputText" type="email" name="email" placeholder="andreas.cottet@enseirb-matmeca.fr" bind:value="{user.email}" required>
     </div>
     <div>
         <label for="password">Choisissez un mot de passe</label>
@@ -76,7 +83,7 @@
     }
 
     label {
-        @apply block text-left mb-2 font-semibold text-lg text-black;
+        @apply block text-left mb-2 text-black;
     }
 
     button {

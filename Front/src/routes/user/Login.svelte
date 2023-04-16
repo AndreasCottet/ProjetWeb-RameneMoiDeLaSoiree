@@ -1,23 +1,62 @@
-<form class="w-1/4 p-6 space-y-4 md:space-y-6 sm:p-8 rounded-lg drop-shadow-lg border mt-20 bg-white" method="GET" action="http://127.0.0.1/api/connect.php">
-    <h1 class="text-xl font-bold text-black">Se connecter</h1>
-    <input type="hidden" value="etudiant" name="entity">
+<script>
+    import { connectUser } from "../../api/ApiPhp";
+
+    let user = {
+        email: '',
+        password: '',
+    };
+
+    export let errorMessage = '';
+
+    if(document.cookie.includes('userId')) {
+        document.location.href="#/"
+    }
+
+    function handleSubmit()
+    {
+        if (user.email == '' || user.password == '') {
+            throw new Error('Veuillez remplir tous les champs');
+        }
+        connectUser(user).then((data) => {
+            console.log(data);
+            setCookie('userId', data, 1)
+            document.location.href="#/"
+            document.location.reload()
+        }).catch((error) => {
+            errorMessage = error.response.data.error
+        });
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+</script>
+
+<div class="w-1/4 p-6 space-y-4 md:space-y-6 sm:p-8 rounded-lg drop-shadow-lg border mt-20 bg-white">
+    <h1 class="text-3xl font-bold text-black">Se connecter</h1>
+    <!-- <input type="hidden" value="etudiant" name="entity"> -->
+    {#if errorMessage}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Erreur !</strong>
+            <span class="block sm:inline">{errorMessage}</span>
+        </div>
+    {/if}
     <div>
-        <label for="email">Choisissez un email</label>
-        <input class="inputText" type="email" name="email" placeholder="name@company.com" required="">
+        <label for="email">Saisissez votre email</label>
+        <input class="inputText" type="email" bind:value={user.email} placeholder="andreas.cottet@enseirb-matmeca.fr" required>
     </div>
     <div>
-        <label for="password">Choisissez un mot de passe</label>
-        <input class="inputText"  type="password" name="password" placeholder="••••••••" required="">
+        <label for="password">Saisissez votre mot de passe</label>
+        <input class="inputText"  type="password" bind:value={user.password} placeholder="••••••••" required>
     </div>
-    <button type="submit" class="hover:bg-transparent hover:text-blue-400">Se connecter</button>
+    <button on:click={handleSubmit} class="hover:bg-transparent hover:text-blue-400">Se connecter</button>
     <p class="text-sm font-light text-gray-500">
         Vous n'avez pas de compte ? <a href="#/user/create" class="font-medium text-primary-600 hover:underline text-primary-500">S'inscrire</a>
     </p>
-</form>
-    
-<script>
-    
-</script>
+</div>
 
 <style>
     .inputText {

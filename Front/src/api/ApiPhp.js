@@ -56,12 +56,8 @@ export const postPath = async (form) => {
 }
 
 export const postUser = async (form) => {
-  try {
     const response = await Api.post("http://127.0.0.1/api/insert.php?entity=etudiant", form);
-  } catch (error) {
-    console.error(error.response.data.error);
-    return error.response.data.error;
-  }
+    return response;
 }
 
 export const getTrajets = async (trajet) => {
@@ -79,3 +75,88 @@ export const getTrajets = async (trajet) => {
     console.error(error);
   }
 }
+
+export const connectUser = async (user) => {
+    const response = await Api.get("http://127.0.0.1/api/connect.php?email=" + user.email + "&password=" + user.password);
+    return response;
+}
+
+export const getInscriptionTrajetByTrajetId = async (id) => {
+  const response = await Api.get("http://127.0.0.1/api/select.php?entity=inscriptionTrajet&idTrajet=" + id);
+  return response;
+}
+
+export const subscribeTrajet = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/insert.php?entity=inscriptionTrajet", form)
+  return response;
+}
+
+export const deleteInscriptionTrajet = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/delete.php?entity=inscriptionTrajet", form)
+}
+
+export const getLieu = async () => {
+  const response = await Api.get("http://127.0.0.1/api/select.php?entity=lieu");
+  return response;
+}
+
+export const getLieuById = async (id) => {
+  const response = await Api.get("http://127.0.0.1/api/select.php?entity=lieu&id=" + id);
+  return response;
+}
+
+export const postLieu = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/insert.php?entity=lieu",form)
+  return response;
+}
+
+export const getEvenement = async (id) => {
+  const response = await Api.get("http://127.0.0.1/api/select.php?entity=evenement");
+  return response;
+}
+
+export const postEvenement = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/insert.php?entity=evenement",form)
+  return response;
+}
+
+export const getMessage = async (id) => {
+  const response = await Api.get("http://127.0.0.1/api/select.php?entity=message&idTrajet=" + id);
+  console.log(response)
+  return response;
+}
+
+export const postMessage = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/insert.php?entity=message",form)
+  return response;
+}
+
+export const getCommentByTrajetId = async (id) => {
+  const response = await Api.get("http://127.0.0.1/api/select.php?entity=commentaireTrajet&idTrajet=" + id);
+  console.log(response)
+  return response;
+}
+
+export const postComment = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/insert.php?entity=commentaireTrajet",form)
+  return response;
+}
+
+export const getEvaluationByTrajetId = async (id) => {
+  const response = await Api.get("http://127.0.0.1/api/select.php?entity=evaluationTrajet&idTrajet=" + id);
+  console.log(response)
+  return response;
+}
+
+export const postEvaluation = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/insert.php?entity=evaluationTrajet",form)
+  return response;
+}
+
+export const deleteTrajet = async (form) => {
+  const response = await Api.post("http://127.0.0.1/api/delete.php?entity=trajet",form)
+  return response;
+}
+
+
+
