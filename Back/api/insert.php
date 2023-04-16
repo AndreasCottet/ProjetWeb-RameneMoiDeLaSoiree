@@ -4,7 +4,7 @@ include_once('../orm/insert.php');
 
 $fieldRequired = $entity->fieldRequired();
 foreach($_POST as $key => $value) {
-    if($key != "entity" && $key != "id") {
+    if($key != "entity" || $key != "id") {
         if(property_exists($entity, $key)){
             $entity->$key = $value;
         }

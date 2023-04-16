@@ -2,6 +2,7 @@
 
 function executeWithoutResult($query, $db) 
 {
+    echo $query;
     $queryStatement = $db->prepare($query);
     try {
         $queryStatement->execute();
@@ -21,7 +22,7 @@ function executeWithResults($entityName, $query, $db)
         $results = $queryStatement->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         http_response_code(406);
-        $error["error"] = "Erreur des paramètres de la reqûete" . $e->getMessage();
+        $error["error"] = "Erreur des paramètres de la reqûete " . $e->getMessage();
         echo json_encode($error, JSON_PRETTY_PRINT);
         die();
     }

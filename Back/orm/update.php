@@ -5,7 +5,7 @@ function updateQuery($tableName, $values, $id) {
     foreach($values as $key => $value) {
         $query .= "SET $key = $value ";
     }
-    $query .= "WHERE ID_ETUDAINT = $id";
+    $query .= "WHERE = $id";
     return $query;
 }
 

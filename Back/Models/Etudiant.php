@@ -1,5 +1,6 @@
 <?php
 include_once("ModelBase.php");
+include_once("../orm/select.php");
 
 class Etudiant extends ModelBase {
     const TABLE_NAME = "ETUDIANT";
@@ -77,11 +78,19 @@ class Etudiant extends ModelBase {
             echo json_encode($error, JSON_PRETTY_PRINT);
             die();
         }
-        $this->password =  password_hash($this->password, PASSWORD_DEFAULT);
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
     }
 
     public function afterInsert($db) {
-        header("http://localhost/api/connect.php?email=$this->email&password=$this->password");
+        $query = selectQuery($this::TABLE_NAME, ["EMAIL" => ["'$this->email'"]]);
+        $etudiant = select(get_class($this), $query, $db)[0];
+        echo json_encode($etudiant->id, JSON_PRETTY_PRINT);
+    }
+
+    public function fieldRequiredDelete() {
+        return [
+            "id",
+        ];
     }
 }
 

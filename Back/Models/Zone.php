@@ -52,10 +52,11 @@ class Zone extends ModelBase {
         ];
     }
 
-    
-
-    // Vérifier que l'utilisateur a tel ou tel role 
-    //public function checkIf()
+    public function fieldRequiredDelete() {
+        return [
+            "id"
+        ];
+    }
 }
 
 ?>

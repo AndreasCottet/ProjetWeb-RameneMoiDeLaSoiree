@@ -51,6 +51,12 @@ class Evenement extends ModelBase {
             "nom" => "string"
         ];
     }
+
+    public function fieldRequiredDelete() {
+        return [
+            "id"
+        ];
+    }
 }
 
 ?>

@@ -1,5 +1,6 @@
 <?php
 include_once("../orm/common.php");
+header('Access-Control-Allow-Origin: *');
 include_once("../bdd/connectBDD.php");
 
 // Attention sensible aux attaques sql injection
@@ -12,12 +13,7 @@ $notFind = true;
 if(count($results)) {   
     foreach($results as $result) {
         if(password_verify($_GET["password"], $result["PASSWORD"])) {
-            $userId = 
-            setcookie(
-                'userId',
-                $result["ID_ETUDIANT"],
-                ['expires' => time() + 365*24*3600,'path' => '/',]
-            );
+            echo json_encode($result['ID_ETUDIANT'], JSON_PRETTY_PRINT);
             return;
         }
     }

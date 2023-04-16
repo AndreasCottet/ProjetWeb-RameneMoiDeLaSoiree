@@ -1,12 +1,13 @@
 <?php
 include_once("ModelBase.php");
 
-class EvaluationTrajet extends ModelBase {
-    const TABLE_NAME = "EVALUATION_TRAJET";
+class Lieu extends ModelBase {
+    const TABLE_NAME = "LIEU";
 
     public $id;
-    public $idComment;
-    public $note;
+    public $nom;
+    public $adresse;
+    public $idZone;
 
     public function objectToArray()
     {
@@ -26,34 +27,41 @@ class EvaluationTrajet extends ModelBase {
 
     public function arrayToObject($array)
     {
-        $this->id = $array['ID_EVALUATION_TRAJET'];
-        $this->idComment = $array['ID_COMMENTAIRE_TRAJET'];
-        $this->note = $array['NOTE'];
+        $equivalenceTab = $this->equivalence();
+        $typeField = $this->getTypeField();
+        foreach($array as $key => $value)
+        {
+            $field = array_search($key, $equivalenceTab);
+            $this->$field = $value;
+        }
     }
 
     public function equivalence()
     {
         return [
-            "id" => "ID_EVALUATION_TRAJET",
-            "idComment" => "ID_COMMENTAIRE_TRAJET",
-            "note" => "NOTE"            
+            "id" => "ID_LIEU",
+            "nom" => "NOM",
+            "idZone" => "ID_ZONE",
+            "adresse" => "ADRESSE"
         ];
     }
 
-    public function fieldRequired()
+    public function fieldRequired() 
     {
         return [
-            "idComment",
-            "note"
-        ];
+            "nom",
+            "idZone",
+            "adresse"
+        ];   
     }
 
     public function getTypeField()
     {
         return [
             "id" => "int",
-            "idComment" => "int",
-            "note" => "int"
+            "nom" => "string",
+            "idZone" => "int",
+            "adresse" => "string"
         ];
     }
 
@@ -62,6 +70,7 @@ class EvaluationTrajet extends ModelBase {
             "id"
         ];
     }
+    
 }
 
 ?>

@@ -7,15 +7,8 @@ class CommentaireTrajet extends ModelBase {
     public $id;
     public $idEtudiant;
     public $idTrajet;
-    public $message;
-    
-
-    public function arrayToObject($array)
-    {
-        $this->id = $array['ID_COMMENTAIRE_TRAJET'];
-        $this->idEtudiant = $array['ID_ETUDIANT'];
-        $this->idTrajet = $array['ID_TRAJET'];
-    }
+    public $idEtudiantVisee;
+    public $commentaire;
 
     public function objectToArray()
     {
@@ -38,7 +31,9 @@ class CommentaireTrajet extends ModelBase {
         return [
             "id" => "ID_COMMENTAIRE_TRAJET",
             "idEtudiant" => "ID_ETUDIANT",
-            "idTrajet" => "ID_TRAJET"
+            "idTrajet" => "ID_TRAJET",
+            "idEtudiantVisee" => "ID_ETUDIANT_VISEE",
+            "commentaire" => "COMMENTAIRE"
         ];
     }
 
@@ -47,7 +42,9 @@ class CommentaireTrajet extends ModelBase {
         return [
             "id" => "int",
             "idEtudiant" => "int",
-            "idTrajet" => "int"
+            "idTrajet" => "int",
+            "idEtudiantVisee" => "int",
+            "commentaire" => "string"
         ];
     }
 
@@ -55,7 +52,14 @@ class CommentaireTrajet extends ModelBase {
         return [
             "idTrajet",
             "idEtudiant",
-            "message"
+            "commentaire"
+        ];
+    }
+
+    public function fieldRequiredDelete() {
+        return [
+            "idTrajet",
+            "idEtudiant"
         ];
     }
 }

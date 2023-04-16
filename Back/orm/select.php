@@ -28,3 +28,16 @@ function selectQuery($tableName, $where, $specificValues = null)
     return $query;
 }
 
+function select($entityName, $query, $db) 
+{
+    try {
+        $results = executeWithResults($entityName, $query, $db);
+    } catch (PDOException $e) {
+        http_response_code(406);
+        $error["error"] = "Erreur des paramètres de la reqûete ";
+        echo json_encode($error, JSON_PRETTY_PRINT);
+        die();
+    }
+    return $results;
+}
+

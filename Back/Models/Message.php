@@ -1,12 +1,13 @@
 <?php
 include_once("ModelBase.php");
 
-class EvaluationTrajet extends ModelBase {
-    const TABLE_NAME = "EVALUATION_TRAJET";
+class Message extends ModelBase {
+    const TABLE_NAME = "MESSAGE";
 
     public $id;
-    public $idComment;
-    public $note;
+    public $idEtudiant;
+    public $idTrajet;
+    public $message;
 
     public function objectToArray()
     {
@@ -24,27 +25,13 @@ class EvaluationTrajet extends ModelBase {
         return $array;
     }
 
-    public function arrayToObject($array)
-    {
-        $this->id = $array['ID_EVALUATION_TRAJET'];
-        $this->idComment = $array['ID_COMMENTAIRE_TRAJET'];
-        $this->note = $array['NOTE'];
-    }
-
     public function equivalence()
     {
         return [
-            "id" => "ID_EVALUATION_TRAJET",
-            "idComment" => "ID_COMMENTAIRE_TRAJET",
-            "note" => "NOTE"            
-        ];
-    }
-
-    public function fieldRequired()
-    {
-        return [
-            "idComment",
-            "note"
+            "id" => "ID_MESSAGE ",
+            "idEtudiant" => "ID_ETUDIANT",
+            "idTrajet" => "ID_TRAJET",
+            "message" => "MESSAGE"
         ];
     }
 
@@ -52,16 +39,24 @@ class EvaluationTrajet extends ModelBase {
     {
         return [
             "id" => "int",
-            "idComment" => "int",
-            "note" => "int"
+            "idEtudiant" => "int",
+            "idTrajet" => "int",
+            "message" => "string"
+        ];
+    }
+
+    public function fieldRequired() {
+        return [
+            "idTrajet",
+            "idEtudiant",
+            "message"
         ];
     }
 
     public function fieldRequiredDelete() {
         return [
-            "id"
+            "idTrajet",
+            "idEtudiant"
         ];
     }
 }
-
-?>

@@ -7,6 +7,7 @@ class InscriptionTrajet extends ModelBase {
     public $id;
     public $idTrajet;
     public $idEtudiant;
+    public $status;
 
     public function objectToArray()
     {
@@ -29,6 +30,7 @@ class InscriptionTrajet extends ModelBase {
         $this->id = $array['ID_INSCRIPTION_TRAJET'];
         $this->idTrajet = $array['ID_TRAJET'];
         $this->idEtudiant = $array['ID_ETUDIANT'];
+        $this->status = $array['STATUS'];
     }
 
     public function equivalence()
@@ -36,7 +38,8 @@ class InscriptionTrajet extends ModelBase {
         return [
             "id" => "ID_INSCRIPTION_TRAJET",
             "idTrajet" => "ID_TRAJET",
-            "idEtudiant" => "ID_ETUDIANT"
+            "idEtudiant" => "ID_ETUDIANT",
+            "status" => "STATUS"            
         ];
     }
 
@@ -44,7 +47,8 @@ class InscriptionTrajet extends ModelBase {
     {
         return [
             "idTrajet",
-            "idEtudiant"
+            "idEtudiant",
+            "status"
         ];
     }
 
@@ -53,7 +57,22 @@ class InscriptionTrajet extends ModelBase {
         return [
             "id" => "int",
             "idTrajet" => "int",
-            "idEtudiant" => "int"
+            "idEtudiant" => "int",
+            "status" => "string"
+        ];
+    }
+
+    public function fieldRequiredUpdate() {
+        return [
+            "id",
+            "status",
+        ];
+    }
+
+    public function fieldRequiredDelete() {
+        return [
+            "id",
+            "idEtudiant",
         ];
     }
 }
