@@ -87,15 +87,5 @@ create table INSCRIPTION_TRAJET (
     FOREIGN KEY (ID_ETUDIANT) REFERENCES ETUDIANT(ID_ETUDIANT)
 ); ";
 
-echo $creation;
-
-$connexion->multi_query($creation);
-
-
-?>
-
-<!-- DROP TABLE inscription_trajet;
-DROP TABLE commentaire_trajet;
-DROP TABLE evaluation_trajet;
-DROP TABLE trajet;
-DROP TABLE etudiant; -->
+$queryStatement = $db->prepare($creation);
+$queryStatement->execute();
